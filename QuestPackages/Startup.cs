@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QuestPackages.Models;
+using Microsoft.Extensions.Options;
+
 
 namespace QuestPackages
 {
@@ -23,8 +26,17 @@ namespace QuestPackages
 
         public IConfiguration Configuration { get; }
 
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<HttpRequestSettings>(Configuration.GetSection(nameof(HttpRequestSettings)));
+            services.AddSingleton<IHttpRequestSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<HttpRequestSettings>>().Value);
+
+
+            services.Configure<PackageDatabaseSettings>(Configuration.GetSection(nameof(PackageDatabaseSettings)));
+            services.AddSingleton<IPackageDatabaseSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<PackageDatabaseSettings>>().Value);
+
+
 
             services.AddControllers();
         }
