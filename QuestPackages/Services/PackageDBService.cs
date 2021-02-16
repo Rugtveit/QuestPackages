@@ -23,7 +23,8 @@ namespace QuestPackages.Services
         {
             var dbPackages = GetPackages();
             List<string> packageIds = new List<string>();
-            foreach (var dbPackage in dbPackages) packageIds.Add(dbPackage.Id);
+            foreach (var dbPackage in dbPackages) 
+                packageIds.Add(dbPackage.Id);
             return packageIds;
         }
 
@@ -31,7 +32,8 @@ namespace QuestPackages.Services
 
         public bool HasPackage(string packageId) 
         {
-            if (_dbPackages.Find(dbPackage => dbPackage.Id == packageId).CountDocuments() != 0) return true; 
+            if (_dbPackages.Find(dbPackage => dbPackage.Id == packageId)
+                .CountDocuments() != 0) return true; 
             return false;
         }
 

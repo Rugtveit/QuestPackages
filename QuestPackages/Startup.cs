@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using QuestPackages.Models;
+using QuestPackages.Services;
 using Microsoft.Extensions.Options;
 
 
@@ -36,7 +37,9 @@ namespace QuestPackages
             services.Configure<PackageDatabaseSettings>(Configuration.GetSection(nameof(PackageDatabaseSettings)));
             services.AddSingleton<IPackageDatabaseSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<PackageDatabaseSettings>>().Value);
 
-
+            services.AddSingleton<PackageDBService>();
+            services.AddSingleton<RequestService>();
+            services.AddSingleton<PackageAPIService>();
 
             services.AddControllers();
         }
