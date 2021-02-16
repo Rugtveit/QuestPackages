@@ -1,0 +1,4 @@
+.vs/*
+QuestPackages/obj/*
+QuestPackages/bin/*
+QuestPackages/*.Development.json
