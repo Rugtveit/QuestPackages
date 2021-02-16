@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +28,7 @@ namespace QuestPackages
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adding the settings 
             services.Configure<HttpRequestSettings>(Configuration.GetSection(nameof(HttpRequestSettings)));
             services.AddSingleton<IHttpRequestSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<HttpRequestSettings>>().Value);
 
