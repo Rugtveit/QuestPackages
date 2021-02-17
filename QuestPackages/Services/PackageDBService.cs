@@ -17,6 +17,30 @@ namespace QuestPackages.Services
             _dbPackages = packageDB.GetCollection<DBPackage>(dbSettings.DatabaseCollectionName);
         }
 
+
+        public DBPackage PackageToDBPackage(Package package) 
+        {
+            DBPackage dbPackage = new DBPackage();
+            Config cfg = package.config;
+            dbPackage.DownloadUrl = cfg.info.additionalData.soLink;
+            dbPackage.Name = cfg.info.name;
+            dbPackage.Id = cfg.info.id;
+            dbPackage.Url = cfg.info.url;
+            dbPackage.Version = cfg.info.version;
+            List<DBDependency> dbDependencies = new List<DBDependency>();  
+            foreach(var dependency in cfg.dependencies) 
+            {
+                DBDependency dbDependency = new DBDependency();
+                dbDependency.Id = dependency.Id;
+                dbDependency.VersionRange = dependency.VersionRange;
+                dbDependencies.Add(dbDependency);
+            }
+            dbPackage.Dependencies = dbDependencies.ToArray();
+            return dbPackage;
+        }
+
+
+
         public List<DBPackage> GetPackages() => _dbPackages.Find(dbPackage => true).ToList();
 
         public List<string> GetPackageIds()
