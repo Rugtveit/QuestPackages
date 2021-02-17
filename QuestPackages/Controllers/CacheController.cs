@@ -8,7 +8,7 @@ using QuestPackages.Models;
 
 namespace QuestPackages.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/cache")]
     [ApiController]
     public class CacheController : ControllerBase
     {

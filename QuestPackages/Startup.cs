@@ -42,6 +42,7 @@ namespace QuestPackages
             services.AddSingleton<PackageAPIService>();
             services.AddSingleton<CachingService>();
 
+            services.AddHttpClient();
             services.AddControllers();
         }
 
