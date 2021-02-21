@@ -20,7 +20,7 @@ Install required packages
 
     dotnet restore
 
-Go to [App Settings Explained]("#AppSettings") section for information on how to set it up the settings.  
+Go to [App Settings Explained](#AppSettings) section for information on how to set it up the settings.  
   
 Start the backend
 
