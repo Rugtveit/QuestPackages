@@ -4,7 +4,7 @@
 
 An backend that caches packages from [QPackages](https://qpackages.com/) API. 
 
-Backend made in [ASP.NET Core 5.0](https://nextjs.org/) and using [MongoDB](https://www.typescriptlang.org/) as Database.
+Backend made in [ASP.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) and using [MongoDB](https://www.mongodb.com/) as Database.
 
 </h2>
 <h1> Usage </h1>
