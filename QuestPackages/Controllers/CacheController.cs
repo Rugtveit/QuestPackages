@@ -13,7 +13,7 @@ namespace QuestPackages.Controllers
     public class CacheController : ControllerBase
     {
         private readonly CachingService _cachingService;
-        public CacheController(CachingService cachingService) 
+        public CacheController(CachingService cachingService)
         {
             _cachingService = cachingService;
         }
@@ -21,9 +21,16 @@ namespace QuestPackages.Controllers
 
         [HttpGet("update")]
         public async Task<ActionResult> UpdateCache()
-        { 
+        {
             await _cachingService.UpdateCache();
             return NoContent();
+        }
+
+        [HttpGet("start")]
+        public async Task<ActionResult> StartCache()
+        {
+            await _cachingService.StartCaching();
+            return Content("Started caching!");
         }
 
     }
