@@ -18,19 +18,11 @@ namespace QuestPackages.Controllers
             _cachingService = cachingService;
         }
 
-
         [HttpGet("update")]
         public async Task<ActionResult> UpdateCache()
         {
             await _cachingService.UpdateCache();
             return NoContent();
-        }
-
-        [HttpGet("start")]
-        public async Task<ActionResult> StartCache()
-        {
-            await _cachingService.StartCaching();
-            return Content("Started caching!");
         }
 
     }

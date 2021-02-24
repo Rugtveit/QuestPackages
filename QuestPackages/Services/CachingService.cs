@@ -15,13 +15,6 @@ namespace QuestPackages.Services
         {
             _packageAPIService = packageAPIService;
             _packageDBService = packageDBService;
-            Task.Run(() => this.UpdateCache(1800000).Wait());
-        }
-        
-        // This is required so the CachingService is constructed!
-        public async Task StartCaching() 
-        {
-            await Task.CompletedTask;
         }
 
         public async Task UpdateCache() 
@@ -37,15 +30,6 @@ namespace QuestPackages.Services
                 dbPackage.Versions = packageVersions.ToArray();
                 if (_packageDBService.HasPackage(packageId)) _packageDBService.UpdatePackage(packageId, dbPackage);
                 else _packageDBService.CreatePackage(dbPackage);
-            }
-        }
-
-        public async Task UpdateCache(int milliseconds) 
-        {
-            while (true) 
-            {
-                await UpdateCache();
-                await Task.Delay(milliseconds);
             }
         }
     }
