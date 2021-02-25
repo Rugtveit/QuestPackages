@@ -25,6 +25,11 @@ namespace QuestPackages
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<CacheScopedHostedService>();
+                    services.AddScoped<IScopedCachingService, ScopedCachingService>();
+                });                
     }
 }

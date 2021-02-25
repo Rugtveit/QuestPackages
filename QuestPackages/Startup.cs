@@ -33,6 +33,9 @@ namespace QuestPackages
             services.Configure<HttpRequestSettings>(Configuration.GetSection(nameof(HttpRequestSettings)));
             services.AddSingleton<IHttpRequestSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<HttpRequestSettings>>().Value);
 
+            services.Configure<CacheSettings>(Configuration.GetSection(nameof(CacheSettings)));
+            services.AddSingleton<ICacheSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<CacheSettings>>().Value);
+
 
             services.Configure<PackageDatabaseSettings>(Configuration.GetSection(nameof(PackageDatabaseSettings)));
             services.AddSingleton<IPackageDatabaseSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<PackageDatabaseSettings>>().Value);
