@@ -2,3 +2,4 @@
 QuestPackages/obj/*
 QuestPackages/bin/*
 QuestPackages/*.Development.json
+QuestPackages/*.Production.json
