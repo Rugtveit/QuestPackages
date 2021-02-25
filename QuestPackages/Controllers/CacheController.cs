@@ -13,16 +13,19 @@ namespace QuestPackages.Controllers
     public class CacheController : ControllerBase
     {
         private readonly CachingService _cachingService;
-        public CacheController(CachingService cachingService)
+        private readonly ICacheSettings _cacheSettings;
+        public CacheController(CachingService cachingService, ICacheSettings cacheSettings)
         {
             _cachingService = cachingService;
+            _cacheSettings = cacheSettings;
         }
 
-        [HttpGet("update")]
-        public async Task<ActionResult> UpdateCache()
+        [HttpGet("{token}")]
+        public async Task<ActionResult> UpdateCache(string token)
         {
+            if (token != _cacheSettings.UpdateCacheToken) return NotFound();
             await _cachingService.UpdateCache();
-            return NoContent();
+            return Content("Updated Cache!");
         }
 
     }

@@ -9,12 +9,14 @@ namespace QuestPackages.Models
     {
         public Interval CachingInterval { get; set; }
         public bool CachingEnabled { get; set; }
+        public string UpdateCacheToken { get; set; }
     }
 
     public interface ICacheSettings
     {
         Interval CachingInterval { get; set; }
         bool CachingEnabled { get; set; }
+        string UpdateCacheToken { get; set; }
     }
 
     public class Interval
