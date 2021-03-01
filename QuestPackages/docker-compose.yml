@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  questpackages:
+    image: ${DOCKER_REGISTRY-}questpackages
+    ports:
+     - 80:80
+     - 443:443
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment: 
+    - ASPNETCORE_URLS=https://+:443;http://+:80
+    - ASPNETCORE_Kestrel__Certificates__Default__Password=PASSWORD
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/questpackages.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
