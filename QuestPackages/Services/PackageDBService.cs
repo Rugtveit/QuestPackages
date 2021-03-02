@@ -61,6 +61,16 @@ namespace QuestPackages.Services
             return false;
         }
 
+        public string GetPackageVersion(string packageId)
+        {
+            var package = _dbPackages.Find(dbPackage => dbPackage.Id == packageId);
+            if (package.CountDocuments() != 0)
+            {
+                return package.FirstOrDefault().Version;
+            }
+            return "";
+        }
+
         public DBPackage CreatePackage(DBPackage dBPackage) 
         {
             _dbPackages.InsertOne(dBPackage);

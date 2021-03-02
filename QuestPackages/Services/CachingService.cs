@@ -24,7 +24,11 @@ namespace QuestPackages.Services
             {
                 DBPackage dbPackage = new DBPackage();
                 List<string> packageVersions = await _packageAPIService.GetPackageVersions(packageId);
+
+                if (_packageDBService.GetPackageVersion(packageId) == packageVersions[0]) return;
+                
                 Package package = await _packageAPIService.GetPackage(packageId, packageVersions[0]);
+               
 
                 dbPackage = _packageDBService.PackageToDBPackage(package);
                 dbPackage.Versions = packageVersions.ToArray();
