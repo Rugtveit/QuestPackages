@@ -17,7 +17,6 @@ namespace QuestPackages.Services
     {
         private readonly CachingService _cachingService;
         private readonly ICacheSettings _cacheSettings; 
-        private Timer _timer;
         private readonly TimeSpan _interval;
         public ScopedCachingService(CachingService cachingService, ICacheSettings cacheSettings)
         {
@@ -36,11 +35,6 @@ namespace QuestPackages.Services
                 await _cachingService.UpdateCache();
                 await Task.Delay(_interval, stoppingToken);
             }
-        }
-
-        public void Dispose()
-        {
-            _timer.Dispose();
         }
     }
 }

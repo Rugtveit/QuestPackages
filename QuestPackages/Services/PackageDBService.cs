@@ -39,8 +39,6 @@ namespace QuestPackages.Services
             return dbPackage;
         }
 
-
-
         public List<DBPackage> GetPackages() => _dbPackages.Find(dbPackage => true).ToList();
 
         public List<string> GetPackageIds()
@@ -56,19 +54,20 @@ namespace QuestPackages.Services
 
         public bool HasPackage(string packageId) 
         {
-            if (_dbPackages.Find(dbPackage => dbPackage.Id == packageId)
-                .CountDocuments() != 0) return true; 
+            if (this.GetPackage(packageId) != null) return true;
             return false;
         }
 
         public string GetPackageVersion(string packageId)
         {
-            var package = _dbPackages.Find(dbPackage => dbPackage.Id == packageId);
-            if (package.CountDocuments() != 0)
-            {
-                return package.FirstOrDefault().Version;
-            }
-            return "";
+            var package = this.GetPackage(packageId);
+            if(package == null) return "";
+            return package.Version;
+        }
+
+        public void DeletePackage(string packageId) 
+        {
+            _dbPackages.DeleteOne(dbPackage => dbPackage.Id == packageId);
         }
 
         public DBPackage CreatePackage(DBPackage dBPackage) 
