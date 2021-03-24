@@ -33,7 +33,7 @@ namespace QuestPackages.Services
                 DBPackage dbPackage = new DBPackage();
                 List<string> packageVersions = await _packageAPIService.GetPackageVersions(packageId);
 
-                if (_packageDBService.GetPackageVersion(packageId) == packageVersions[0]) return;
+                if (_packageDBService.GetPackageVersion(packageId) == packageVersions[0]) continue;
 
                 Package package = await _packageAPIService.GetPackage(packageId, packageVersions[0]);
 
